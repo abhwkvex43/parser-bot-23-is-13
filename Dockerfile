@@ -18,6 +18,9 @@ COPY . .
 # Create directories
 RUN mkdir -p downloads temp data logs
 
+# Expose health check port
+EXPOSE 8000
+
 # Environment — cloud defaults (no proxy needed outside Russia)
 ENV PYTHONUNBUFFERED=1
 ENV PROXY_URL=""

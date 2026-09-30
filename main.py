@@ -10,6 +10,7 @@ import os
 import time
 from pathlib import Path
 
+from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
@@ -55,6 +56,24 @@ async def cleanup_temp_files():
                 logger.info("Cleanup: removed %d temp files", removed)
         except Exception as e:
             logger.error("Cleanup error: %s", e)
+
+
+async def health_check(request):
+    """Simple HTTP health endpoint for cloud platforms (Koyeb, Render, etc.)."""
+    return web.Response(text="OK", status=200)
+
+
+async def start_health_server():
+    """Start minimal HTTP server on PORT (default 8000) for health checks."""
+    port = int(os.environ.get("PORT", 8000))
+    app = web.Application()
+    app.router.add_get("/", health_check)
+    app.router.add_get("/health", health_check)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
+    logger.info("Health check server on port %d", port)
 
 
 async def main():
@@ -131,6 +150,9 @@ async def main():
 
     # Start cleanup task
     asyncio.create_task(cleanup_temp_files())
+
+    # Start health check server (for cloud platforms)
+    asyncio.create_task(start_health_server())
 
     # Delete webhook and start polling
     await bot.delete_webhook(drop_pending_updates=True)
