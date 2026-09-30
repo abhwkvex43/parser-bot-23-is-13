@@ -1,0 +1,57 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# FFmpeg binaries (too large for git)
+ffmpeg/
+ffmpeg-*/
+ffmpeg.zip
+*.zip
+
+# Telegram Bot API server binary
+telegram-bot-api/
+telegram-bot-api-data/
+telegram-bot-api-data-*/
+
+# Downloads & temp
+downloads/
+temp/
+
+# Database
+data/
+*.db
+*.db-journal
+
+# Logs
+logs/
+*.log
+
+# Generated images / avatars
+*.png
+avatar.png
+Minimalist_app_icon_for_a_medi_*.png
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Docker
+docker-compose.override.yml
