@@ -18,8 +18,11 @@ COPY . .
 # Create directories
 RUN mkdir -p downloads temp data logs
 
-# Environment
+# Environment — cloud defaults (no proxy needed outside Russia)
 ENV PYTHONUNBUFFERED=1
+ENV PROXY_URL=""
+ENV USE_LOCAL_BOT_API=false
+ENV FFMPEG_PATH=ffmpeg
 
 # Run
 CMD ["python", "main.py"]

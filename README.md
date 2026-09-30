@@ -48,6 +48,38 @@ python main.py
 docker-compose up -d
 ```
 
+### Облачный деплой (24/7 без своего ПК)
+
+GitHub хранит код, но не запускает ботов. Для хостинга используйте:
+
+#### Вариант 1 — Render.com (бесплатно)
+
+1. Зарегистрируйтесь на [render.com](https://render.com) (через GitHub)
+2. New → **Background Worker** → подключите репозиторий `parser-bot-23-is-13`
+3. Файл `render.yaml` уже в репозитории — настройки подхватятся автоматически
+4. В разделе Environment добавьте переменную:
+   - `BOT_TOKEN` = ваш токен от @BotFather
+5. Нажмите **Create** — бот запустится автоматически
+
+#### Вариант 2 — Koyeb (бесплатно)
+
+1. Зарегистрируйтесь на [koyeb.com](https://koyeb.com) (через GitHub)
+2. Create Service → **Docker** → выберите репозиторий
+3. Добавьте env-переменные:
+   - `BOT_TOKEN` = токен
+   - `PROXY_URL` = *(пусто)*
+   - `USE_LOCAL_BOT_API` = false
+4. Deploy
+
+#### Вариант 3 — Railway
+
+1. Зарегистрируйтесь на [railway.app](https://railway.app) (через GitHub)
+2. New Project → Deploy from GitHub repo
+3. Добавьте переменные окружения (BOT_TOKEN, PROXY_URL="", USE_LOCAL_BOT_API=false)
+4. Deploy
+
+> На облаке прокси **не нужен** — зарубежные серверы имеют прямой доступ к Telegram и YouTube.
+
 ## Команды
 
 | Команда   | Описание                          |

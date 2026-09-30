@@ -1,0 +1,21 @@
+services:
+  - type: worker
+    name: parser-bot-23-is-13
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: PROXY_URL
+        value: ""
+      - key: USE_LOCAL_BOT_API
+        value: "false"
+      - key: DATABASE_URL
+        value: "sqlite+aiosqlite:///./data/media_bot.db"
+      - key: MAX_CONCURRENT_DOWNLOADS
+        value: "2"
+      - key: LOG_LEVEL
+        value: "INFO"
+    healthCheckPath: /
+    autoDeploy: true
