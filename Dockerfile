@@ -18,7 +18,7 @@ COPY . .
 # Create directories
 RUN mkdir -p downloads temp data logs
 
-# Expose health check port
+# Expose health check port (8000 default, 7860 for Hugging Face Spaces)
 EXPOSE 8000
 
 # Environment — cloud defaults (no proxy needed outside Russia)
