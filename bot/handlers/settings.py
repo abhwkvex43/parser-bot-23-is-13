@@ -23,10 +23,11 @@ def _settings_text(settings) -> str:
         lang_names = {"ru": "\u0420\u0443\u0441\u0441\u043a\u0438\u0439", "en": "English", "de": "Deutsch", "it": "Italiano"}
         sub_status = lang_names.get(settings.subtitle_language, settings.subtitle_language)
 
+    _mt = "\u0412\u0438\u0434\u0435\u043e" if settings.media_type == "video" else "\u0410\u0443\u0434\u0438\u043e"
     return (
         "\u2699\ufe0f <b>\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438</b>\n\n"
         f"\U0001F3AC <b>\u0422\u0438\u043f \u043f\u043e \u0443\u043c\u043e\u043b\u0447\u0430\u043d\u0438\u044e:</b>\n"
-        f"{'\u0412\u0438\u0434\u0435\u043e' if settings.media_type == 'video' else '\u0410\u0443\u0434\u0438\u043e'}\n\n"
+        f"{_mt}\n\n"
         f"\U0001F4F1 <b>\u041a\u0430\u0447\u0435\u0441\u0442\u0432\u043e \u0432\u0438\u0434\u0435\u043e:</b>\n"
         f"{settings.video_quality}\n\n"
         f"\U0001F4C1 <b>\u0424\u043e\u0440\u043c\u0430\u0442 \u0432\u0438\u0434\u0435\u043e:</b>\n"
@@ -45,10 +46,11 @@ def _settings_kb(settings) -> "InlineKeyboardMarkup":
     """Build settings editing keyboard."""
     from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
+    _mt = "\u0412\u0438\u0434\u0435\u043e" if settings.media_type == "video" else "\u0410\u0443\u0434\u0438\u043e"
     return InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(
-                text=f"\U0001F3AC \u0422\u0438\u043f: {'\u0412\u0438\u0434\u0435\u043e' if settings.media_type == 'video' else '\u0410\u0443\u0434\u0438\u043e'}",
+                text=f"\U0001F3AC \u0422\u0438\u043f: {_mt}",
                 callback_data="set_media_type",
             )
         ],
