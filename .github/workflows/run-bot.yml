@@ -34,8 +34,4 @@ jobs:
           PYTHONUNBUFFERED: "1"
         run: |
           mkdir -p data downloads temp logs
-          python main.py &
-          BOT_PID=$!
-          sleep 19800
-          kill -TERM $BOT_PID 2>/dev/null
-          wait $BOT_PID 2>/dev/null
+          python main.py
