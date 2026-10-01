@@ -270,10 +270,11 @@ async def _start_playlist_download(callback: CallbackQuery, state: FSMContext):
     await state.set_state(PlaylistStates.downloading)
 
     total = len(indices)
+    _mt = "\u0412\u0438\u0434\u0435\u043e" if media_type == "video" else "\u0410\u0443\u0434\u0438\u043e"
     await safe_edit(callback.message,
         f"\U0001F4CB \u0417\u0430\u0433\u0440\u0443\u0437\u043a\u0430 \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442\u0430\n\n"
         f"\u0412\u0441\u0435\u0433\u043e: {total} \u0432\u0438\u0434\u0435\u043e\n"
-        f"\u0422\u0438\u043f: {'\u0412\u0438\u0434\u0435\u043e' if media_type == 'video' else '\u0410\u0443\u0434\u0438\u043e'}\n"
+        f"\u0422\u0438\u043f: {_mt}\n"
         f"\u041a\u0430\u0447\u0435\u0441\u0442\u0432\u043e: {quality}\n"
         f"\u0424\u043e\u0440\u043c\u0430\u0442: {fmt.upper()}\n\n"
         "\u23f3 \u041e\u0436\u0438\u0434\u0430\u0439\u0442\u0435..."
